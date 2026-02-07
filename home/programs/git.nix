@@ -10,51 +10,50 @@
         email = "sstigter@tilaa.com";
       };
 
+      core = {
+        editor = "nvim";
+        autocrlf = "input";
+      };
+
       color = {
         ui = true;
       };
 
       alias = {
-        co = "checkout";
-        br = "branch";
-        ci = "commit";
-        st = "status";
-        unstage = "reset HEAD --";
-        last = "log -1 HEAD";
-        visual = "log --graph --oneline --all";
-        lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+        ls = "log --pretty=format\:\"\%C(yellow)\%h\%Cred\%d\\ \%Creset\%s\%Cblue\\ [\%an]\" --decorate";
       };
       
-      pull = {
+      push = {
         default = "upstream";
       };
 
+      pull = {
+        rebase = true;
+      };
+
+      rebase = {
+        autoStash = true;
+      };
+
+      rerere = {
+        enabled = true;
+      };
+
+      init = {
+        templatedir = "~/.config/git/templates";
+        defaultBranch = "main";
+      };
+
+      commit = {
+        gpgsign = true;
+      };
+
+      log = {
+        follow = true;
+      };
+
     };
 
-    extraConfig = {
-      init.defaultBranch = "main";
-      pull.rebase = false;
-      push.autoSetupRemote = true;
-      
-      core = {
-        editor = "nvim";
-        autocrlf = "input";
-      };
-      
-
-
-      merge = {
-        conflictstyle = "diff3";
-      };
-      
-      diff = {
-        colorMoved = "default";
-      };
-      
-      # Better diffs
-      rerere.enabled = true;
-    };
-    
     # Git ignore patterns
     ignores = [
       ".DS_Store"
@@ -68,9 +67,8 @@
       ".env"
       ".direnv/"
     ];
-    
-    # Delta for better diffs (optional)
-    delta = {
+  };
+  programs.delta = {
       enable = true;
       options = {
         navigate = true;
@@ -78,6 +76,5 @@
         side-by-side = true;
         line-numbers = true;
       };
-    };
   };
 }
