@@ -40,6 +40,7 @@ in
   environment.systemPackages = with pkgs; [
     # Editors
     vim
+    vimPlugins
     neovim
 
     # IDEs

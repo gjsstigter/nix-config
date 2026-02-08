@@ -18,6 +18,7 @@
     ./programs/fish.nix
     ./programs/ghostty.nix
     ./programs/git.nix
+    ./programs/neovim.nix
     ./programs/tmux.nix
   ];
 }
