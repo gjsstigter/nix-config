@@ -1,101 +1,67 @@
 {
-  description = "Example nix-darwin system flake";
-
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    mac-app-util.url = "github:hraban/mac-app-util";
+    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-25.11" ;};
+    nixpkgs-unstable = {url = "github:NixOS/nixpkgs/nixpkgs-unstable";};
+    nixpkgs-darwin = {url = "github:NixOS/nixpkgs/nixpkgs-unstable";};
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
     };
 
-    nur.url = "github:nix-community/NUR";
+    nix-homebrew = {url = "github:zhaofengli-wip/nix-homebrew";};
+    homebrew-core = { url = "github:homebrew/homebrew-core"; flake = false; };
+    homebrew-cask = { url = "github:homebrew/homebrew-cask"; flake = false; };
+    homebrew-bundle = { url = "github:homebrew/homebrew-bundle"; flake = false; };
+    
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs-darwin";
+        };
+      };
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
+    };
   };
 
-  outputs =
-    inputs@{
-      self,
-      nix-darwin,
-      nix-homebrew,
-      homebrew-core,
-      homebrew-cask,
-      nixpkgs,
-      home-manager,
-      mac-app-util,
-      nur,
-    }:
+  outputs = { ... }@inputs:
+    with inputs;
     let
-      vars = {
-        user = "sstigter";
-        hostname = "ymir";
-        defaultbrowser = "firefox";
+      inherit (self) outputs;
+
+      stateVersion = "24.05";
+      libx = import ./lib { inherit inputs outputs stateVersion; };
+    in {
+      darwinConfigurations = {
+        ymir = libx.mkDarwin { hostname = "ymir"; };
       };
-    in
-    {
-      darwinConfigurations.${vars.hostname} = nix-darwin.lib.darwinSystem {
-        modules = [
-        {
-          nixpkgs.overlays = [
-            nur.overlays.default
+
+      colmena = {
+        meta = {
+          nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
+          specialArgs = {
+            inherit inputs outputs stateVersion self;
+          };
+        };
+
+        default = { lib, config, name, ... }: {
+          import = [
+            inputs.home-manager.nixosModules.home-manager
           ];
-        }
-          ./modules/system.nix
-          ./modules/packages.nix
-          ./modules/homebrew.nix
-          
-          mac-app-util.darwinModules.default
-          
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            nix-homebrew = {
-              enable = true;
-              enableRosetta = true;
-              user = vars.user;
-              
-              taps = {
-                "homebrew/homebrew-core" = homebrew-core;
-                "homebrew/homebrew-cask" = homebrew-cask;
-              };
-              
-              mutableTaps = false;
-              autoMigrate = true;
-            };
-          }
-          
-          (
-            { config, ... }:
-            {
-              homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
-            }
-          )
-          
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.${vars.user} = import ./home/home.nix;
-              sharedModules = [ mac-app-util.homeManagerModules.default ];
-              extraSpecialArgs = { inherit vars; };
-              backupFileExtension = "backup"; 
-            };
-          }
-          
-          # Pass vars to all modules
-          { _module.args = { inherit vars; }; }
-        ];
+        };
       };
     };
 }

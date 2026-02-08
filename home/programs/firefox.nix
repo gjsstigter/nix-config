@@ -11,7 +11,7 @@
       
       # Search engines
       search = {
-        default = "DuckDuckGo";
+        default = "ddg";
         force = true;
         
         engines = {
@@ -29,13 +29,13 @@
           
           "NixOS Wiki" = {
             urls = [{ template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; }];
-            iconUpdateURL = "https://wiki.nixos.org/favicon.ico";
+            icon = "https://wiki.nixos.org/favicon.ico";
             definedAliases = [ "@nw" ];
           };
           
           "GitHub" = {
             urls = [{ template = "https://github.com/search?q={searchTerms}"; }];
-            iconUpdateURL = "https://github.com/favicon.ico";
+            icon = "https://github.com/favicon.ico";
             definedAliases = [ "@gh" ];
           };
         };

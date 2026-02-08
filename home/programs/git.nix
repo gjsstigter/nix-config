@@ -8,6 +8,7 @@
       user = {
         name = "Stèlios Stigter";
         email = "sstigter@tilaa.com";
+        signingkey = "~/.ssh/id_rsa.pub";
       };
 
       core = {
@@ -46,6 +47,10 @@
 
       commit = {
         gpgsign = true;
+      };
+
+      gpg = {
+        format = "ssh";
       };
 
       log = {
