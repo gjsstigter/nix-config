@@ -1,10 +1,1 @@
-**
-
-!/home
-!/hosts
-!/lib
-!configuration.nix
-!flake.nix
-!flake.lock
-!Makefile
-!.gitignore
+result
