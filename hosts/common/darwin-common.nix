@@ -38,25 +38,6 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    ## unstable
-    # unstablePkgs.yt-dlp
-    # unstablePkgs.get_iplayer
-    # unstablePkgs.colmena
-    # unstablePkgs.talhelper
-
-    ## stable CLI
-    # pkgs.age
-    # pkgs.comma
-    # pkgs.hcloud
-    # pkgs.just
-    # pkgs.lima
-    # pkgs.nix
-    # pkgs.nodejs
-    # pkgs.opentofu
-    # pkgs.pass
-    # pkgs.sops
-    # pkgs.turso-cli
-    # pkgs.yq
     # Editors
     vim
     neovim
@@ -70,6 +51,7 @@ in
     fish
     direnv
     yq
+    tree
 
     # Development tools
     nixfmt
@@ -79,6 +61,7 @@ in
     slack
     firefox
     orbstack
+    teams
 
     # System utilities
     mkalias
@@ -241,10 +224,6 @@ in
       NSGlobalDomain.NSWindowShouldDragOnGesture = true;
       NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
 
-      dock = {
-        autohide = true;
-      };
-
       trackpad = {
         Clicking = true;
       };
@@ -257,15 +236,8 @@ in
 
       CustomUserPreferences = {
         "com.apple.dock" = {
-          launchanim = false;
-          static-only = false;
-          show-recents = false;
-          show-process-indicators = true;
-          orientation = "bottom";
           tilesize = 36;
           minimize-to-application = true;
-          mineffect = "scale";
-          enable-window-tool = false;
         };
         "com.apple.ActivityMonitor" = {
           OpenMainWindow = true;

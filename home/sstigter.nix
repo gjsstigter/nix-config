@@ -6,14 +6,17 @@
 , ...
 }:
 {
-  home.stateVersion = "23.11";
+  home = {
+    stateVersion = "23.11";
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+  };
 
   imports = [
-    # Import program configurations
-    # Uncomment the ones you want to use
-
     ./programs/firefox.nix
-    ./programs/git.nix
     ./programs/fish.nix
+    ./programs/git.nix
+    ./programs/tmux.nix
   ];
 }

@@ -2,10 +2,13 @@
 {
   system.defaults.dock = {
     persistent-apps = [
-      "/Applications/Mail.app"
+      "/System/Applications/Mail.app"
+      "/System/Applications/Calendar.app"
       "/Applications/Nix Apps/Firefox.app"
       "/Applications/Nix Apps/Slack.app"
       "/Applications/Ghostty.app"
+      "/Applications/Nix Apps/OrbStack.app"
+      "/Applications/Proton Pass.app"
     ];
   };
 }
