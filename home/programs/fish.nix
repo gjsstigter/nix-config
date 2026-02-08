@@ -3,18 +3,18 @@
 {
   programs.fish = {
     enable = true;
-    
+
     shellAliases = {
       # System
       ls = "ls -lah";
       ".." = "cd ..";
       "..." = "cd ../..";
-      
+
       # Nix
       nrs = "darwin-rebuild switch --flake .";
       nrb = "darwin-rebuild build --flake .";
       nfu = "nix flake update";
-      
+
       # Git shortcuts
       g = "git";
       gs = "git status";
@@ -23,22 +23,22 @@
       gc = "git commit";
       gp = "git push";
       gl = "git pull";
-      
+
       # Editor
       v = "nvim";
       vim = "nvim";
     };
-    
+
     shellInit = ''
       # Disable greeting
       set fish_greeting
-      
+
       # Set colors
       set -g fish_color_command green
       set -g fish_color_error red
       set -g fish_color_param cyan
     '';
-    
+
     functions = {
       # Custom function to create and enter directory
       mkcd = {
@@ -48,7 +48,7 @@
           cd $argv[1]
         '';
       };
-      
+
       # Extract various archive types
       extract = {
         description = "Extract various archive types";
@@ -77,7 +77,7 @@
           end
         '';
       };
-      
+
       # Git commit with message
       gcm = {
         description = "Git commit with message";
@@ -86,11 +86,11 @@
         '';
       };
     };
-    
+
     interactiveShellInit = ''
       # Bind ctrl+f to accept autosuggestion
       bind \cf forward-char
-      
+
       # Bind ctrl+e to edit command in editor
       bind \ce edit_command_buffer
     '';

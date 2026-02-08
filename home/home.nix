@@ -1,10 +1,14 @@
-{ config, pkgs, vars, ... }:
+{ config
+, pkgs
+, vars
+, ...
+}:
 
 {
   imports = [
     # Import program configurations
     # Uncomment the ones you want to use
-    
+
     ./programs/firefox.nix
     ./programs/git.nix
     ./programs/fish.nix
@@ -17,10 +21,10 @@
     username = vars.user;
     homeDirectory = "/Users/${vars.user}";
   };
-  
+
   # Let home-manager manage itself
   programs.home-manager.enable = true;
-  
+
   # Additional home packages (separate from system packages)
   home.packages = with pkgs; [
     # Add user-specific packages here
@@ -29,7 +33,7 @@
     # bat
     # eza
   ];
-  
+
   # Environment variables
   home.sessionVariables = {
     EDITOR = "nvim";

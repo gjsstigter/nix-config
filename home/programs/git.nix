@@ -3,7 +3,7 @@
 {
   programs.git = {
     enable = true;
-    
+
     settings = {
       user = {
         name = "Stèlios Stigter";
@@ -23,7 +23,7 @@
       alias = {
         ls = "log --pretty=format\:\"\%C(yellow)\%h\%Cred\%d\\ \%Creset\%s\%Cblue\\ [\%an]\" --decorate";
       };
-      
+
       push = {
         default = "upstream";
       };
@@ -74,12 +74,12 @@
     ];
   };
   programs.delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        light = false;
-        side-by-side = true;
-        line-numbers = true;
-      };
+    enable = true;
+    options = {
+      navigate = true;
+      light = false;
+      side-by-side = true;
+      line-numbers = true;
+    };
   };
 }

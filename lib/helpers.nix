@@ -1,53 +1,76 @@
-{ inputs, outputs, stateVersion, ... }:
+{ inputs
+, outputs
+, stateVersion
+, ...
+}:
 {
-  mkDarwin = { hostname, username ? "sstigter", system ? "aarch64-darwin",}:
-  let
-    inherit (inputs.nixpkgs) lib;
-    unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
-    customConfPath = ./../hosts/darwin/${hostname};
-    customConf = if builtins.pathExists (customConfPath) then (customConfPath + "/default.nix") else ./../hosts/common/darwin-common-dock.nix;
-  in
+  mkDarwin =
+    { hostname
+    , username ? "sstigter"
+    , system ? "aarch64-darwin"
+    ,
+    }:
+    let
+      inherit (inputs.nixpkgs) lib;
+      unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+      customConfPath = ./../hosts/darwin/${hostname};
+      customConf =
+        if builtins.pathExists (customConfPath) then
+          (customConfPath + "/default.nix")
+        else
+          ./../hosts/common/darwin-common-dock.nix;
+    in
     inputs.nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit system inputs username unstablePkgs; };
-      extraSpecialArgs = { inherit inputs; };
+      specialArgs = {
+        inherit
+          system
+          inputs
+          username
+          unstablePkgs
+          ;
+      };
       modules = [
-      #   ../hosts/common/common-packages.nix
-      #   ../hosts/common/darwin-common.nix
+        #   ../hosts/common/common-packages.nix
+        ../hosts/common/darwin-common.nix
         customConf
-      #   # Add nodejs overlay to fix build issues (https://github.com/NixOS/nixpkgs/issues/402079)
-      #   {
-      #     nixpkgs.overlays = [
-      #       (final: prev: {
-      #         nodejs = prev.nodejs_22;
-      #         nodejs-slim = prev.nodejs-slim_22;
-      #       })
-      #     ];
-      #   }
-        inputs.home-manager.darwinModules {
-            networking.hostName = hostname;
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              backupFileExtension = "backup";
-              extraSpecialArgs = { inherit inputs; };
-              sharedModules = [ mac-app-util.homeManagerModules.default ];
-              users.${username} = { imports = [ ./../home/${username}.nix ]; };
-            }
+        #   # Add nodejs overlay to fix build issues (https://github.com/NixOS/nixpkgs/issues/402079)
+        #   {
+        #     nixpkgs.overlays = [
+        #       (final: prev: {
+        #         nodejs = prev.nodejs_22;
+        #         nodejs-slim = prev.nodejs-slim_22;
+        #       })
+        #     ];
+        #   }
+        inputs.home-manager.darwinModules.home-manager
+        {
+          networking.hostName = hostname;
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "backup";
+            extraSpecialArgs = { inherit inputs; };
+            sharedModules = [ inputs.mac-app-util.homeManagerModules.default ];
+            users.${username} = {
+              imports = [ ./../home/${username}.nix ];
+            };
+          };
         }
-      #   inputs.nix-homebrew.darwinModules.nix-homebrew {
-      #     nix-homebrew = {
-      #       enable = true;
-      #       enableRosetta = true;
-      #       autoMigrate = true;
-      #       mutableTaps = true;
-      #       user = "${username}";
-      #       taps = with inputs; {
-      #         "homebrew/homebrew-core" = homebrew-core;
-      #         "homebrew/homebrew-cask" = homebrew-cask;
-      #         "homebrew/homebrew-bundle" = homebrew-bundle;
-      #       };
-      #     };
-      #   }
+        inputs.nix-homebrew.darwinModules.nix-homebrew
+        {
+          nix-homebrew = {
+            enable = true;
+            enableRosetta = true;
+            autoMigrate = true;
+            mutableTaps = true;
+            user = "${username}";
+            taps = with inputs; {
+              "homebrew/homebrew-core" = homebrew-core;
+              "homebrew/homebrew-cask" = homebrew-cask;
+              "homebrew/homebrew-bundle" = homebrew-bundle;
+            };
+          };
+        }
 
       ];
       # ] ++ lib.optionals (builtins.pathExists ./../hosts/darwin/${hostname}/default.nix) [
