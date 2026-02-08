@@ -25,7 +25,6 @@ in
     };
     channel.enable = false;
   };
-  system.stateVersion = 5;
 
   # Set primary user for system-wide activation
   system.primaryUser = "sstigter";
@@ -226,7 +225,7 @@ in
   #     # "loopback"
   #     # "soundsource"
   #   ];
-  masApps = { };
+#  masApps = { };
 
   # Add ability to used TouchID for sudo authentication
   security.pam.services.sudo_local.touchIdAuth = true;
