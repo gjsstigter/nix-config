@@ -5,7 +5,8 @@ let
     owner = "catppuccin";
     repo = "ghostty";
     rev = "main";
-  };
+        sha256 = "sha256-Y6RFften1/6+1xdhIzEh/E7FBJTwY5a8NH4301HbgOM=";
+        };
 in
 {
   programs.ghostty = {
@@ -20,7 +21,6 @@ in
     window-padding-y = 10;
     # Add other settings here
   };
-
     };
       home.file.".config/ghostty/themes" = {
         source = "${catppuccin-ghostty}/themes";
