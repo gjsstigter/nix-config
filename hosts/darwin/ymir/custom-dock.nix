@@ -2,6 +2,7 @@
 {
   system.defaults.dock = {
     persistent-apps = [
+      "/System/Applications/Messages.app"
       "/System/Applications/Mail.app"
       "/System/Applications/Calendar.app"
       "/Applications/Nix Apps/Firefox.app"

@@ -16,6 +16,7 @@
   imports = [
     ./programs/firefox.nix
     ./programs/fish.nix
+    ./programs/fzf.nix
     ./programs/ghostty.nix
     ./programs/git.nix
     ./programs/neovim.nix

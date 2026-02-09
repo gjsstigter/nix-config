@@ -52,6 +52,8 @@ in
     direnv
     yq
     tree
+    k9s
+    fzf
 
     # Development tools
     nixfmt
@@ -61,7 +63,6 @@ in
     slack
     firefox
     orbstack
-    teams
     spotify
 
     # System utilities
@@ -109,11 +110,11 @@ in
     };
 
     brews = [
-      "pam-reattach"
       "kind"
-      "helm"
+      "helm@3"
       "helmfile"
       "kubectl"
+      "watch"
     ];
 
     casks = [
@@ -221,6 +222,8 @@ in
 
   # Add ability to used TouchID for sudo authentication
   security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local.watchIdAuth = true;
+  security.pam.services.sudo_local.reattach = true;
 
   # macOS configuration
   system = {
@@ -230,10 +233,6 @@ in
       NSGlobalDomain.AppleShowAllExtensions = true;
       NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
       NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
-
-      trackpad = {
-        Clicking = true;
-      };
 
       finder = {
         AppleShowAllExtensions = true;
