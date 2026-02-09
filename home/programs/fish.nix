@@ -6,9 +6,9 @@
 
     shellAliases = {
       # System
-#      ls = "ls -lah";
-#      ".." = "cd ..";
-#      "..." = "cd ../..";
+      #      ls = "ls -lah";
+      #      ".." = "cd ..";
+      #      "..." = "cd ../..";
 
       # Nix
       nrs = "darwin-rebuild switch --flake .";
@@ -16,28 +16,28 @@
       nfu = "nix flake update";
 
       # Git shortcuts
-#      g = "git";
-#      gs = "git status";
-#      gd = "git diff";
-#      ga = "git add";
-#      gc = "git commit";
-#      gp = "git push";
-#      gl = "git pull";
+      #      g = "git";
+      #      gs = "git status";
+      #      gd = "git diff";
+      #      ga = "git add";
+      #      gc = "git commit";
+      #      gp = "git push";
+      #      gl = "git pull";
 
       # Editor
       v = "nvim";
       vim = "nvim";
     };
 
-#    shellInit = ''
-#      # Disable greeting
-#      set fish_greeting
-#
-#      # Set colors
-#      set -g fish_color_command green
-#      set -g fish_color_error red
-#      set -g fish_color_param cyan
-#    '';
+    #    shellInit = ''
+    #      # Disable greeting
+    #      set fish_greeting
+    #
+    #      # Set colors
+    #      set -g fish_color_command green
+    #      set -g fish_color_error red
+    #      set -g fish_color_param cyan
+    #    '';
 
     functions = {
       # Custom function to create and enter directory

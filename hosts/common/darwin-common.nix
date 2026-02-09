@@ -62,6 +62,7 @@ in
     firefox
     orbstack
     teams
+    spotify
 
     # System utilities
     mkalias
@@ -106,6 +107,14 @@ in
       autoUpdate = true;
       upgrade = true;
     };
+
+    brews = [
+      "pam-reattach"
+      "kind"
+      "helm"
+      "helmfile"
+      "kubectl"
+    ];
 
     casks = [
       "hammerspoon"
@@ -208,7 +217,7 @@ in
   #     # "loopback"
   #     # "soundsource"
   #   ];
-#  masApps = { };
+  #  masApps = { };
 
   # Add ability to used TouchID for sudo authentication
   security.pam.services.sudo_local.touchIdAuth = true;
@@ -219,9 +228,7 @@ in
 
     defaults = {
       NSGlobalDomain.AppleShowAllExtensions = true;
-      NSGlobalDomain.AppleShowScrollBars = "Always";
       NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
-      NSGlobalDomain.NSWindowShouldDragOnGesture = true;
       NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
 
       trackpad = {
