@@ -51,6 +51,7 @@ in
     fish
     direnv
     yq
+    jq
     tree
     k9s
     fzf
