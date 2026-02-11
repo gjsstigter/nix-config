@@ -12,6 +12,7 @@
       "/Applications/Ghostty.app"
       "/Applications/Nix Apps/OrbStack.app"
       "/Applications/Proton Pass.app"
+      "/Users/sstigter/Applications/PhpStorm.app"
     ];
   };
 }

@@ -43,8 +43,7 @@ in
     neovim
 
     # IDEs
-    jetbrains.phpstorm
-    jetbrains.webstorm
+    jetbrains-toolbox
     vscodium
 
     # Terminal utilities
@@ -238,7 +237,7 @@ in
     stateVersion = 6;
 
     defaults = {
-      NSGlobalDomain.AppleShowAllExtensions = true;
+      NSGlobalDomain.AppleShowAllExtensions = false;
       NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
       NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
 
