@@ -1,6 +1,8 @@
 { config, ... }:
 {
   system.defaults.dock = {
+    expose-group-apps = true;
+    show-recents = true;
     persistent-apps = [
       "/System/Applications/Messages.app"
       "/System/Applications/Mail.app"

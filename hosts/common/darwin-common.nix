@@ -44,6 +44,7 @@ in
 
     # IDEs
     jetbrains.phpstorm
+    jetbrains.webstorm
     vscodium
 
     # Terminal utilities
@@ -110,12 +111,18 @@ in
       upgrade = true;
     };
 
+    taps = [
+        "hashicorp/tap"
+    ];
+
     brews = [
       "kind"
       "helm@3"
       "helmfile"
       "kubectl"
       "watch"
+      "hashicorp/tap/vault"
+      "make"
     ];
 
     casks = [
@@ -244,7 +251,7 @@ in
       CustomUserPreferences = {
         "com.apple.dock" = {
           tilesize = 36;
-          minimize-to-application = true;
+          minimize-to-application = false;
         };
         "com.apple.ActivityMonitor" = {
           OpenMainWindow = true;
