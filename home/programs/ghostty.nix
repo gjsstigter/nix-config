@@ -14,7 +14,7 @@ in
     package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
     enableFishIntegration = true;
     settings = {
-      theme = "catppuccin-mocha.conf";
+      theme = "Desert";
       font-family = "JetBrains Mono";
       font-size = 13;
       window-padding-x = 10;
