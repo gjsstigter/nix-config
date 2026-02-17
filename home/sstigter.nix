@@ -14,6 +14,7 @@
   };
 
   imports = [
+    ./programs/aerospace.nix
     ./programs/firefox.nix
     ./programs/fish.nix
     ./programs/fzf.nix

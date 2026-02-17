@@ -55,6 +55,8 @@ in
     tree
     k9s
     fzf
+    go
+
 
     # Development tools
     nixfmt
@@ -69,6 +71,7 @@ in
     # System utilities
     mkalias
     defaultbrowser
+    aerospace
   ];
 
   fonts = {
@@ -248,10 +251,6 @@ in
       };
 
       CustomUserPreferences = {
-        "com.apple.dock" = {
-          tilesize = 36;
-          minimize-to-application = false;
-        };
         "com.apple.ActivityMonitor" = {
           OpenMainWindow = true;
           IconType = 5;
