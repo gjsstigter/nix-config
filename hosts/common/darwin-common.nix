@@ -104,37 +104,9 @@ in
   };
 
   environment = { shells = [ pkgs.fish ]; };
-
-  homebrew = {
-    enable = true;
-    onActivation = {
-      cleanup = "zap";
-      autoUpdate = true;
-      upgrade = true;
-    };
-
-    taps = [
-        "hashicorp/tap"
-    ];
-
-    brews = [
-      "kind"
-      "helm@3"
-      "helmfile"
-      "kubectl"
-      "watch"
-      "hashicorp/tap/vault"
-      "make"
-    ];
-
-    casks = [
-      "hammerspoon"
-      "proton-pass"
-      "ghostty"
-    ];
+   homebrew = {
+     enable = false;
   };
-  # homebrew = {
-  #   enable = true;
   #   onActivation = {
   #     cleanup = "zap";
   #     autoUpdate = true;

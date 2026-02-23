@@ -1,0 +1,15 @@
+tap "hashicorp/tap"
+tap "fluxcd/tap"
+
+brew "kind"
+brew "helm@3"
+brew "helmfile"
+brew "kubectl"
+brew "watch"
+brew "hashicorp/tap/vault"
+brew "make"
+brew "fluxcd/tap/flux"
+
+cask "hammerspoon"
+cask "proton-pass"
+cask "ghostty"

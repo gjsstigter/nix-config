@@ -21,6 +21,7 @@
     ./programs/ghostty.nix
     ./programs/git.nix
     ./programs/neovim.nix
+    ./programs/sketchybar.nix
     ./programs/tmux.nix
   ];
 }

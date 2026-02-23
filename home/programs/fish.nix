@@ -4,6 +4,8 @@
   programs.fish = {
     enable = true;
 
+    generateCompletions = true;
+
     shellAliases = {
       v = "nvim";
       vim = "nvim";
