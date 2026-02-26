@@ -48,6 +48,9 @@ in
 
     # Terminal utilities
     tmux
+    tmuxPlugins.cpu
+    tmuxPlugins.sensible
+    tmuxPlugins.yank
     fish
     direnv
     yq

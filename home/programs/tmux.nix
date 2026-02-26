@@ -10,6 +10,9 @@
        enable = true;
     };
     plugins = [
+        pkgs.tmuxPlugins.cpu
+        pkgs.tmuxPlugins.sensible
+        pkgs.tmuxPlugins.yank
     ];
     shortcut = "space";
     terminal = "xterm-256color";
@@ -19,6 +22,7 @@
 
         set-option -g set-titles on
         set-option -g set-titles-string "#{pane_title}"
+        set-option -sa terminal-overrides ",xterm*:Tc"
 
         bind c new-window -c "#{pane_current_path}"
         bind '"' split-window -c "#{pane_current_path}"
